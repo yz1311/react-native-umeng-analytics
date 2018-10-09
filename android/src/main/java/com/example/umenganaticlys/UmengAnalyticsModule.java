@@ -54,10 +54,48 @@ public class UmengAnalyticsModule extends ReactContextBaseJavaModule {
         MobclickAgent.onEvent(getCurrentActivity(),event);
     }
     @ReactMethod
-    public void eventWithAttributes(String event,ReadableMap attributes) {
-        ReadableNativeMap map2 = (ReadableNativeMap)attributes;
-        Map useMap = map2.toHashMap();
-        MobclickAgent.onEvent(getCurrentActivity(),event,useMap);
+    public void eventWithLable(String eventId,String eventLabel) {
+        MobclickAgent.onEvent(context, eventId, eventLabel);
+    }
+    @ReactMethod
+    public void eventWithAttributes(String eventId,ReadableMap map) {
+        Map<String, String> rMap = new HashMap<String, String>();
+        ReadableMapKeySetIterator iterator = map.keySetIterator();
+        while (iterator.hasNextKey()) {
+            String key = iterator.nextKey();
+            if (ReadableType.Array == map.getType(key)) {
+                rMap.put(key, map.getArray(key).toString());
+            } else if (ReadableType.Boolean == map.getType(key)) {
+                rMap.put(key, String.valueOf(map.getBoolean(key)));
+            } else if (ReadableType.Number == map.getType(key)) {
+                rMap.put(key, String.valueOf(map.getInt(key)));
+            } else if (ReadableType.String == map.getType(key)) {
+                rMap.put(key, map.getString(key));
+            } else if (ReadableType.Map == map.getType(key)) {
+                rMap.put(key, map.getMap(key).toString());
+            }
+        }
+        MobclickAgent.onEvent(context, eventId, rMap);
+    }
+    @ReactMethod
+    public void eventWithAttributesAndCount(String eventId,ReadableMap map,int value) {
+        Map<String, String> rMap = new HashMap();
+        ReadableMapKeySetIterator iterator = map.keySetIterator();
+        while (iterator.hasNextKey()) {
+            String key = iterator.nextKey();
+            if (ReadableType.Array == map.getType(key)) {
+                rMap.put(key, map.getArray(key).toString());
+            } else if (ReadableType.Boolean == map.getType(key)) {
+                rMap.put(key, String.valueOf(map.getBoolean(key)));
+            } else if (ReadableType.Number == map.getType(key)) {
+                rMap.put(key, String.valueOf(map.getInt(key)));
+            } else if (ReadableType.String == map.getType(key)) {
+                rMap.put(key, map.getString(key));
+            } else if (ReadableType.Map == map.getType(key)) {
+                rMap.put(key, map.getMap(key).toString());
+            }
+        }
+        MobclickAgent.onEventValue(context, eventId, rMap, value);
     }
     @ReactMethod
     public void setEncryptEnabled(Boolean value) {

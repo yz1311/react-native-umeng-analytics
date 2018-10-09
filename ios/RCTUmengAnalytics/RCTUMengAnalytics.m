@@ -41,11 +41,37 @@ RCT_EXPORT_METHOD(event:(NSString *)event){
   }
   [MobClick event:event];
 }
-RCT_EXPORT_METHOD(eventWithAttributes:(NSString *)event attributes:(NSDictionary *)attributes){
-  if (event == nil || [event isKindOfClass:[NSNull class]]) {
+RCT_EXPORT_METHOD(eventWithLabel:(NSString *)eventId eventLabel:(NSString *)eventLabel)
+{
+  if (eventId == nil || [eventId isKindOfClass:[NSNull class]]) {
     return;
   }
-  [MobClick event:event attributes:attributes];
+  if ([eventLabel isKindOfClass:[NSNull class]]) {
+    eventLabel = nil;
+  }
+  [MobClick event:eventId label:eventLabel];
+  
+}
+RCT_EXPORT_METHOD(eventWithAttributes:(NSString *)eventId parameters:(NSDictionary *)parameters)
+{
+  if (eventId == nil || [eventId isKindOfClass:[NSNull class]]) {
+    return;
+  }
+  if (parameters == nil && [parameters isKindOfClass:[NSNull class]]) {
+    parameters = nil;
+  }
+  [MobClick event:eventId attributes:parameters];
+}
+RCT_EXPORT_METHOD(eventWithMapAndCount:(NSString *)eventId parameters:(NSDictionary *)parameters eventNum:(int)eventNum)
+{
+  if (eventId == nil || [eventId isKindOfClass:[NSNull class]]) {
+    return;
+  }
+  if (parameters == nil && [parameters isKindOfClass:[NSNull class]]) {
+    parameters = nil;
+  }
+  
+  [MobClick event:eventId attributes:parameters counter:eventNum];
 }
 RCT_EXPORT_METHOD(setDebugMode:(BOOL)value){
   [UMConfigure setLogEnabled:value];
