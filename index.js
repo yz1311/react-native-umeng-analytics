@@ -27,7 +27,7 @@ export default class UMengAnalytics{
     static eventWithAttributes(event:String,attributes:Object) {
         UmengAnalyticsModel.eventWithAttributes(event,attributes);
     }
-    static eventWithAttributes(event:String,attributes:Object,count:Number) {
+    static eventWithAttributesAndCount(event:String,attributes:Object,count:Number) {
         UmengAnalyticsModel.eventWithAttributesAndCount(event,attributes,count);
     }
     static setDebugMode(value:Boolean) {
