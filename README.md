@@ -1,7 +1,7 @@
 # react-native-umeng-analytics
 ##安装
 ```
-npm install react-native-umeng-analytics
+npm install https://github.com/yz1311/react-native-umeng-analytics
 react-native link react-native-umeng-analytics
 ```
 
