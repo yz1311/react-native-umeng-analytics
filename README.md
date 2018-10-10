@@ -1,4 +1,7 @@
 # react-native-umeng-analytics
+
+在原来[1123746696/react-native-umeng-analytics](https://github.com/1123746696/react-native-umeng-analytics) 的基础上面增加eventWithLabel和eventWithAttributesAndCount方法
+
 ##安装
 ```
 npm install https://github.com/yz1311/react-native-umeng-analytics
