@@ -105,7 +105,9 @@ UmengAnalytics.beginLogPageView(currentPage);
 
 //事件采集
 UmengAnalytics.event(event)
+UmengAnalytics.eventWithLabel(event,label)
 UmengAnalytics.eventWithAttributes(event,attributes)
+UmengAnalytics.eventWithAttributesAndCount(event,attributes,count)
 
 //调试模式
 UmengAnalytics.setDebugMode(true)

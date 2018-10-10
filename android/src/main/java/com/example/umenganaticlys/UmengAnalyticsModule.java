@@ -57,7 +57,7 @@ public class UmengAnalyticsModule extends ReactContextBaseJavaModule {
         MobclickAgent.onEvent(getCurrentActivity(),event);
     }
     @ReactMethod
-    public void eventWithLable(String eventId,String eventLabel) {
+    public void eventWithLabel(String eventId,String eventLabel) {
         MobclickAgent.onEvent(getCurrentActivity(), eventId, eventLabel);
     }
     @ReactMethod
