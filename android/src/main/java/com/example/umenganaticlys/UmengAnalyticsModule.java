@@ -7,10 +7,13 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.bridge.ReadableNativeMap;
+import com.facebook.react.bridge.ReadableType;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -55,7 +58,7 @@ public class UmengAnalyticsModule extends ReactContextBaseJavaModule {
     }
     @ReactMethod
     public void eventWithLable(String eventId,String eventLabel) {
-        MobclickAgent.onEvent(context, eventId, eventLabel);
+        MobclickAgent.onEvent(getCurrentActivity(), eventId, eventLabel);
     }
     @ReactMethod
     public void eventWithAttributes(String eventId,ReadableMap map) {
@@ -75,7 +78,7 @@ public class UmengAnalyticsModule extends ReactContextBaseJavaModule {
                 rMap.put(key, map.getMap(key).toString());
             }
         }
-        MobclickAgent.onEvent(context, eventId, rMap);
+        MobclickAgent.onEvent(getCurrentActivity(), eventId, rMap);
     }
     @ReactMethod
     public void eventWithAttributesAndCount(String eventId,ReadableMap map,int value) {
@@ -95,7 +98,7 @@ public class UmengAnalyticsModule extends ReactContextBaseJavaModule {
                 rMap.put(key, map.getMap(key).toString());
             }
         }
-        MobclickAgent.onEventValue(context, eventId, rMap, value);
+        MobclickAgent.onEventValue(getCurrentActivity(), eventId, rMap, value);
     }
     @ReactMethod
     public void setEncryptEnabled(Boolean value) {
